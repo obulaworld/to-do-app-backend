@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test nyc mocha ./src/__tests__ --recursive --require @babel/register --exit",
-    "start": "node --require @babel/register -- ./src/index.js",
+    "start": "cross-env NODE_ENV=production npm run db:migrate && node --require @babel/register -- ./src/index.js",
     "server": "nodemon --exec babel-node ./src/index.js",
     "db:migrate": "node_modules/.bin/sequelize db:migrate",
     "db:rollback": "node_modules/.bin/sequelize db:migrate:undo:all"
@@ -19,6 +19,7 @@
     "@babel/register": "^7.4.0",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
+    "cross-env": "^5.2.0",
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
     "jsonwebtoken": "^8.5.1",
