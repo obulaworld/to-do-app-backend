@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+- stable
+services:
+- postgresql
+before_script:
+- psql -c 'create database to_do;' -U postgres
+- sequelize db:migrate
+deploy:
+  provider: heroku
+  api_key:
+    secure: AFfACVmtLRFw+DjH2UvYvnK/WFDO0+iKcjEhT0Qu0K/7utzlaArceC7ib7OEOPkpxNKW8XU5OqcyGhf1b+r8NCZiWlwq+UHhaXj3wqakCZHgVU1IiLLuixmhhy1JB8IaijjiQG9XxFpgEBF0en6nhNxLFFRZFpmaQ5x4FDsIVNTJJIHF7ku2MiXTKZOu+/IIlbMDQrWHfnIGl4zO3VCnavWR79+H2pAgbzfCwbHhnb88xhlBh2w7XjjsNQqJpPCowO5h8shEUOvkkGn93mGKnsFqEMmBvseVifOgtslH8rlnj5xDt6bepinm+Zlrt/IcfZKMljaE3LLQhAh3g4yU7BvIEDPzmQRxBWvHtoBAvO+dEjMo3LXKlYc5LYAKPcCJfRlbxlrQaDS+hjN+TtqD/8LH0zF6Drs7IiYYvdVauYXuYNVROgxUHERfu3MWcR2bwEqJzNNIXsJzUNRxGUgHILTdtbXeMQVgs8TgDBIKc1V6oOmaIWnKO58ya3t4et/arKh46QRYrd5g9Q4ZXYIuBuIUJjB7A9FScNMnGDuz2bEMcIBE2HDH61e3cODt+//dPsYf/kL0h9iTRMQhCgW9/32WzkhLPsopVM+g7FYwdhP3KUcV0k0ju8xUCqZLyoxz/oLGl7NAyU5f+CGhmvAc+7rFKVk1tXKWf/Ihjbtudok=
+  run:
+  - sequelize db:migrate
